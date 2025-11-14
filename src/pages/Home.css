@@ -1,0 +1,820 @@
+/* Reset dan Global Styles */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+.main-container {
+  scroll-behavior: smooth;
+}
+
+/* Animasi Keyframes untuk About Section */
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(50px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes fadeInLeft {
+  from {
+    opacity: 0;
+    transform: translateX(-50px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes fadeInRight {
+  from {
+    opacity: 0;
+    transform: translateX(50px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes scaleIn {
+  from {
+    opacity: 0;
+    transform: scale(0.8);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+/* SPINNER LOADING ANIMATION - SAMA SEPERTI NEWS */
+@keyframes spin {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+/* Loading Container - DI TENGAH SEPERTI NEWS */
+.loading-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-height: 40vh;
+  text-align: center;
+  color: #ffffff;
+}
+
+.loading-spinner {
+  width: 60px;
+  height: 60px;
+  border: 4px solid rgba(255, 255, 255, 0.3);
+  border-top: 4px solid #ffffff;
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
+  margin-bottom: 1.5rem;
+}
+
+.loading-container p {
+  font-size: 1.2rem;
+  font-weight: 500;
+  color: #ffffff;
+  margin: 0;
+  opacity: 0.9;
+}
+
+/* Hero Section */
+.hero-section {
+  height: 100vh;
+  position: relative;
+  overflow: hidden;
+}
+
+.home-container {
+  height: 100vh;
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 0 0 40px 40px;
+  overflow: hidden;
+  position: relative;
+}
+
+/* Mobile Hero Section */
+.mobile-hero-content {
+  display: none; /* Sembunyikan di desktop */
+  position: relative;
+  width: 100%;
+  height: 100%;
+  align-items: center;
+  justify-content: flex-end;
+  flex-direction: column;
+}
+
+.kepsek-image {
+  width: 65%;
+  height: auto;
+  object-fit: contain;
+  object-position: center;
+  position: relative;
+  z-index: 2;
+}
+
+.name-background {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  z-index: 1;
+  background-color: white;
+}
+
+.scrolling-names {
+  display: flex;
+  position: absolute;
+  top: 50%;
+  left: 0;
+  transform: translateY(-50%);
+  white-space: nowrap;
+  animation: scrollNames 20s linear infinite;
+}
+
+.scrolling-name {
+  font-size: 8rem;
+  font-weight: 900;
+  color: rgba(0, 0, 0, 0.1);
+  margin-right: 4rem;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+}
+
+/* Animation untuk nama berjalan */
+@keyframes scrollNames {
+  0% {
+    transform: translateY(-50%) translateX(0);
+  }
+  100% {
+    transform: translateY(-50%) translateX(-50%);
+  }
+}
+
+/* Prestasi Section */
+.prestasi-section {
+  min-height: 80vh;
+  background-color: #568F87;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 4rem 0;
+  overflow: hidden;
+  position: relative;
+}
+
+.prestasi-header {
+  text-align: center;
+  margin-bottom: 3rem;
+}
+
+.section-title {
+  font-size: 3rem;
+  font-weight: 900;
+  color: #ffffff;
+  margin-bottom: 1rem;
+  letter-spacing: 1px;
+}
+
+.section-subtitle {
+  font-size: 1.2rem;
+  color: white;
+  font-weight: 300;
+}
+
+.section-content {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 2rem;
+  width: 100%;
+  position: relative; /* Untuk gradasi */
+}
+
+/* Container untuk gallery prestasi */
+.prestasi-gallery-container {
+  width: 100%;
+  overflow: hidden;
+  position: relative;
+  cursor: grab;
+}
+
+/* GRADASI YANG BENAR - DIPINDAH KE SECTION-CONTENT */
+.section-content::before,
+.section-content::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  z-index: 2;
+  pointer-events: none;
+}
+
+.section-content::before {
+  left: 0;
+  background: linear-gradient(90deg, #568F87 0%, rgba(86, 143, 135, 0) 100%);
+}
+
+.section-content::after {
+  right: 0;
+  background: linear-gradient(270deg, #568F87 0%, rgba(86, 143, 135, 0) 100%);
+}
+
+/* Gallery yang bergeser - INFINITE LOOP - UNTUK SEMUA DEVICE */
+.prestasi-scrolling-gallery {
+  display: flex;
+  animation: scrollGallery 40s linear infinite;
+  gap: 1rem;
+  padding: 1rem 0;
+  width: max-content; /* Penting untuk infinite loop */
+}
+
+/* Image Wrapper untuk Landscape dan Portrait */
+.prestasi-image-wrapper {
+  flex: 0 0 auto;
+  border-radius: 8px;
+  overflow: hidden;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+  transition: transform 0.3s ease;
+  position: relative;
+  z-index: 1;
+  background: white;
+}
+
+.prestasi-image-wrapper:hover {
+  transform: scale(1.05);
+}
+
+/* Landscape (16:9) */
+.prestasi-image-wrapper.landscape {
+  width: 300px;
+  height: 169px; /* 300 / 16 * 9 */
+}
+
+/* Portrait (9:16) */
+.prestasi-image-wrapper.portrait {
+  width: 169px; /* 300 / 16 * 9 */
+  height: 300px;
+}
+
+.prestasi-image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  object-position: center; /* SELALU FOCUS KE TENGAH */
+}
+
+/* Animation untuk gallery bergeser - INFINITE PERFECT LOOP */
+/* Untuk landscape dan portrait mixed - DESKTOP */
+@keyframes scrollGallery {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(calc(-300px * 3 - 1rem * 3)); /* 3 set gambar */
+  }
+}
+
+/* Pause animation on hover */
+.prestasi-scrolling-gallery:hover {
+  animation-play-state: paused;
+}
+
+/* No Data - DI TENGAH SEPERTI NEWS */
+.no-data {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-height: 30vh;
+  text-align: center;
+  color: #ffffff;
+  padding: 3rem 0;
+}
+
+.no-data p {
+  font-size: 1.2rem;
+  font-weight: 500;
+  margin: 0;
+  opacity: 0.9;
+}
+
+/* ==================== */
+/* ABOUT SECTION ANIMATIONS - PASTI BEKERJA */
+/* ==================== */
+
+/* About Section Base */
+.about-section {
+  min-height: 100vh;
+  background-color: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 6rem 0;
+}
+
+.about-content {
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 0 2rem;
+  opacity: 0;
+  transform: translateY(30px);
+  transition: all 0.8s ease-out;
+}
+
+/* Animasi untuk About Content */
+.about-content.animate-about {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* About Title dengan Animasi Terpisah */
+.about-title {
+  font-size: 4rem;
+  font-weight: 900;
+  color: #000;
+  margin-bottom: 3rem;
+  text-align: left;
+  letter-spacing: -1px;
+  line-height: 1.1;
+  opacity: 0;
+  transform: translateX(-50px);
+  transition: all 0.8s ease-out 0.3s;
+}
+
+.about-title.animate-title {
+  opacity: 1;
+  transform: translateX(0);
+}
+
+/* About Text dengan Animasi Terpisah */
+.about-text {
+  font-size: 1.1rem;
+  line-height: 1.8;
+  color: #000;
+  text-align: justify;
+  font-family: 'Arial', sans-serif;
+  opacity: 0;
+  transform: translateX(50px);
+  transition: all 0.8s ease-out 0.5s;
+}
+
+.about-text.animate-text {
+  opacity: 1;
+  transform: translateX(0);
+}
+
+/* ==================== */
+/* RESPONSIVE DESIGN */
+/* ==================== */
+
+/* DESKTOP STYLES */
+@media (min-width: 1025px) {
+  .section-content::before,
+  .section-content::after {
+    width: 200px;
+  }
+}
+
+/* TABLET STYLES */
+@media (max-width: 1024px) and (min-width: 769px) {
+  .scrolling-name {
+    font-size: 30rem;
+    color: #F5BABB;
+  }
+  
+  /* Tablet view juga pakai background putih */
+  .home-container {
+    background-color: white !important;
+    align-items: flex-end;
+    padding-bottom: 0 !important;
+  }
+  
+  .mobile-hero-content {
+    display: flex;
+  }
+  
+  /* Ukuran gambar untuk tablet */
+  .kepsek-image {
+    width: 55%;
+    height: auto;
+    max-width: 600px;
+    max-height: 600px;
+    margin-bottom: -1px;
+  }
+  
+  /* Landscape (16:9) - Tablet */
+  .prestasi-image-wrapper.landscape {
+    width: 280px;
+    height: 158px; /* 280 / 16 * 9 */
+  }
+  
+  /* Portrait (9:16) - Tablet */
+  .prestasi-image-wrapper.portrait {
+    width: 158px; /* 280 / 16 * 9 */
+    height: 280px;
+  }
+  
+  /* Gradasi medium di tablet */
+  .section-content::before,
+  .section-content::after {
+    width: 120px;
+  }
+  
+  /* Animation untuk tablet */
+  @keyframes scrollGallery {
+    0% {
+      transform: translateX(0);
+    }
+    100% {
+      transform: translateX(calc(-280px * 3 - 1rem * 3));
+    }
+  }
+  
+  /* Loading tablet */
+  .loading-spinner {
+    width: 50px;
+    height: 50px;
+  }
+  
+  .loading-container p,
+  .no-data p {
+    font-size: 1.1rem;
+  }
+}
+
+/* MOBILE STYLES - Dengan Auto-Scroll + Manual Scroll */
+@media (max-width: 768px) {
+  /* Hilangkan background image di mobile dan set background putih */
+  .home-container {
+    background-image: none !important;
+    background-color: white;
+  }
+  
+  /* Hero section height adjustment - HAPUS PADDING/MARGIN */
+  .hero-section {
+    height: 100vh;
+    margin: 0;
+    padding: 0;
+  }
+  
+  .home-container {
+    height: 100vh;
+    border-radius: 0;
+    display: flex;
+    align-items: flex-end;
+    justify-content: center;
+    padding-bottom: 0 !important;
+    margin: 0;
+  }
+  
+  /* Tampilkan mobile hero content */
+  .mobile-hero-content {
+    display: flex;
+    height: 100%;
+    width: 100%;
+    margin: 0;
+    padding: 0;
+    justify-content: flex-end;
+  }
+  
+  /* Adjust ukuran gambar untuk mobile - MENEMPEL SANGAT BAWAH */
+  .kepsek-image {
+    width: 100%;
+    height: auto;
+    max-width: 600px;
+    max-height: 600px;
+    margin-bottom: -1px;
+  }
+  
+  /* Adjust ukuran teks berjalan untuk mobile */
+  .scrolling-name {
+    font-family: fantasy;
+    font-size: 20rem;
+    margin-right: 1.5rem;
+    color: #F5BABB;
+  }
+  
+  /* Pastikan tidak ada margin/padding yang mengganggu */
+  .main-container {
+    margin: 0;
+    padding: 0;
+  }
+  
+  /* Prestasi section adjustments untuk mobile */
+  .prestasi-section {
+    padding: 3rem 0;
+    min-height: 60vh;
+  }
+  
+  /* GRADASI UNTUK MOBILE - LEBIH KECIL */
+  .section-content::before,
+  .section-content::after {
+    width: 60px; /* Lebih kecil di mobile */
+  }
+  
+  /* Landscape (16:9) - Mobile */
+  .prestasi-image-wrapper.landscape {
+    width: 250px;
+    height: 141px; /* 250 / 16 * 9 */
+  }
+  
+  /* Portrait (9:16) - Mobile */
+  .prestasi-image-wrapper.portrait {
+    width: 141px; /* 250 / 16 * 9 */
+    height: 250px;
+  }
+  
+  .prestasi-scrolling-gallery {
+    gap: 0.8rem;
+    animation-duration: 35s; /* Sedikit lebih lambat di mobile */
+  }
+  
+  .section-title {
+    font-size: 2.5rem;
+  }
+  
+  .about-title {
+    font-size: 3rem;
+  }
+  
+  /* Animation untuk mobile dengan mixed ratio */
+  @keyframes scrollGallery {
+    0% {
+      transform: translateX(0);
+    }
+    100% {
+      transform: translateX(calc(-250px * 3 - 0.8rem * 3)); /* 3 set gambar */
+    }
+  }
+  
+  /* MOBILE SCROLLABLE + AUTO-SCROLL */
+  .prestasi-gallery-container {
+    overflow-x: auto; /* Bisa di-scroll manual */
+    overflow-y: hidden;
+    -webkit-overflow-scrolling: touch; /* Smooth scroll di iOS */
+    scrollbar-width: none; /* Hide scrollbar Firefox */
+    -ms-overflow-style: none; /* Hide scrollbar IE */
+    cursor: grab;
+  }
+  
+  /* Hide scrollbar untuk Chrome, Safari, Opera */
+  .prestasi-gallery-container::-webkit-scrollbar {
+    display: none;
+  }
+  
+  /* Pause auto-scroll ketika user scroll manual */
+  .prestasi-gallery-container.manual-scroll .prestasi-scrolling-gallery {
+    animation-play-state: paused;
+  }
+  
+  /* Resume auto-scroll setelah beberapa detik tidak di-scroll */
+  .prestasi-gallery-container.auto-scroll .prestasi-scrolling-gallery {
+    animation-play-state: running;
+  }
+  
+  /* Optional: Tambah sedikit padding horizontal di mobile */
+  .section-content {
+    padding: 0 1rem;
+  }
+
+  /* Mobile loading */
+  .loading-spinner {
+    width: 45px;
+    height: 45px;
+  }
+  
+  .loading-container p,
+  .no-data p {
+    font-size: 1rem;
+  }
+
+  /* Mobile About Animations */
+  .about-title {
+    transform: translateX(-30px);
+  }
+  
+  .about-text {
+    transform: translateX(30px);
+  }
+}
+
+/* ==================== */
+/* FIX KHUSUS UNTUK IPHONE 12 - HILANGKAN CELAH */
+/* ==================== */
+@media (max-width: 390px) {
+  /* FIX HEIGHT - KURANGI TINGGI UNTUK HILANGKAN CELAH */
+  .hero-section {
+    height: 70vh !important; /* Kurangi dari 100vh */
+    min-height: 70vh !important;
+    max-height: 70vh !important;
+  }
+  
+  .home-container {
+    height: 70vh !important;
+    min-height: 70vh !important;
+    max-height: 70vh !important;
+    padding: 0 !important;
+    margin: 0 !important;
+  }
+  
+  .mobile-hero-content {
+    height: 95vh !important;
+    min-height: 70vh !important;
+    max-height: 70vh !important;
+    justify-content: flex-end !important;
+    align-items: center !important;
+    padding: 0 !important;
+    margin: 0 !important;
+  }
+  
+  /* GAMBAR KEPSEK LEBIH BESAR & RAPI */
+  .kepsek-image {
+    width: 92% !important;
+    max-width: 360px !important;
+    max-height: 580px !important;
+    height: auto !important;
+    object-fit: contain !important;
+    object-position: center bottom !important;
+    margin-bottom: -2px !important;
+    display: block !important;
+  }
+  
+  /* SCROLLING NAMES LEBIH KECIL */
+  .scrolling-name {
+    font-size: 30rem !important;
+    color: #F5BABB !important;
+    margin-right: 0.8rem !important;
+    opacity: 0.7 !important;
+  }
+  
+  /* PASTIKAN TIDAK ADA PADDING/MARGIN YANG MEMBUAT CELAH */
+  .main-container {
+    margin: 0 !important;
+    padding: 0 !important;
+  }
+  
+  /* PRESTASI SECTION SESUAIKAN */
+  .prestasi-section {
+    padding: 2rem 0 !important;
+    min-height: 50vh !important;
+  }
+  
+  .prestasi-image-wrapper.landscape {
+    width: 220px !important;
+    height: 124px !important;
+  }
+  
+  .prestasi-image-wrapper.portrait {
+    width: 124px !important;
+    height: 220px !important;
+  }
+  
+  .section-title {
+    font-size: 2rem !important;
+    margin-bottom: 0.5rem !important;
+  }
+  
+  .about-title {
+    font-size: 2.5rem !important;
+  }
+}
+
+/* FIX EXTRA UNTUK IPHONE 12 DENGAN NOTCH */
+@media (max-width: 390px) and (max-height: 844px) {
+  .hero-section {
+    height: 94vh !important; /* Sedikit lebih pendek untuk notch */
+    padding-top: env(safe-area-inset-top) !important;
+  }
+  
+  .home-container {
+    height: 94vh !important;
+  }
+  
+  .mobile-hero-content {
+    height: 94vh !important;
+    padding-top: 10px !important; /* Sedikit space untuk notch */
+  }
+  
+  .kepsek-image {
+    max-height: 560px !important;
+  }
+}
+
+/* FIX UNTUK IPHONE 12 LANDSCAPE */
+@media (max-width: 844px) and (max-height: 390px) and (orientation: landscape) {
+  .hero-section {
+    height: 100vh !important;
+  }
+  
+  .home-container {
+    height: 100vh !important;
+  }
+  
+  .mobile-hero-content {
+    height: 100vh !important;
+    justify-content: center !important;
+  }
+  
+  .kepsek-image {
+    width: 70% !important;
+    max-height: 320px !important;
+  }
+}
+
+/* Untuk mobile sangat kecil */
+@media (max-width: 480px) {
+  .section-content::before,
+  .section-content::after {
+    width: 40px;
+  }
+  
+  /* Landscape (16:9) - Mobile Kecil */
+  .prestasi-image-wrapper.landscape {
+    width: 220px;
+    height: 124px;
+  }
+  
+  /* Portrait (9:16) - Mobile Kecil */
+  .prestasi-image-wrapper.portrait {
+    width: 124px;
+    height: 220px;
+  }
+  
+  /* Animation untuk mobile kecil */
+  @keyframes scrollGallery {
+    0% {
+      transform: translateX(0);
+    }
+    100% {
+      transform: translateX(calc(-220px * 3 - 0.8rem * 3));
+    }
+  }
+  
+  .scrolling-name {
+    font-size: 15rem;
+  }
+  
+  .section-title {
+    font-size: 2rem;
+  }
+  
+  .about-title {
+    font-size: 2.5rem;
+  }
+  
+  .loading-spinner {
+    width: 40px;
+    height: 40px;
+  }
+}
+
+/* Smooth transition untuk perubahan ukuran */
+.prestasi-image-wrapper {
+  transition: all 0.3s ease;
+}
+
+/* Memastikan gallery container cukup tinggi untuk portrait images */
+.prestasi-gallery-container {
+  min-height: 320px;
+}
+
+@media (max-width: 768px) {
+  .prestasi-gallery-container {
+    min-height: 270px;
+  }
+}
+
+@media (max-width: 480px) {
+  .prestasi-gallery-container {
+    min-height: 240px;
+  }
+}
+
+@media (max-width: 390px) {
+  .prestasi-gallery-container {
+    min-height: 230px !important;
+  }
+}

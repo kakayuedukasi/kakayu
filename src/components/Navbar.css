@@ -1,0 +1,487 @@
+/* Navbar.css - Fixed Version dengan Hamburger Menu yang Bisa Diklik Berkali-kali */
+
+.navbar {
+  padding: 1.5rem 0;
+  position: fixed;
+  top: 0;
+  width: 100%;
+  z-index: 1000;
+  animation: slideDownNavbar 0.8s ease-out;
+  background: transparent;
+  transition: all 0.3s ease;
+}
+
+@keyframes slideDownNavbar {
+  0% {
+    transform: translateY(-100%);
+    opacity: 0;
+  }
+  100% {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+.nav-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 2rem;
+  position: relative;
+}
+
+/* Default Logo */
+.nav-logo {
+  font-size: 1.8rem;
+  font-weight: bold;
+  color: #333;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  animation: fadeIn 0.8s ease-out 0.3s both;
+  transition: all 0.3s ease;
+}
+
+.nav-logo span {
+  background: linear-gradient(45deg, #333, #666);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  transition: all 0.3s ease;
+}
+
+/* White Logo (untuk Home page saat di atas News section dan News page) */
+.nav-logo-white {
+  color: white !important;
+}
+
+.nav-logo-white span {
+  background: linear-gradient(45deg, #ffffff, #e0e0e0);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+/* Dark Logo (untuk Home page saat di section gelap) */
+.nav-logo-dark {
+  color: #333 !important;
+}
+
+.nav-logo-dark span {
+  background: linear-gradient(45deg, #333, #666);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+/* Desktop Menu */
+.nav-menu {
+  display: flex;
+  list-style: none;
+  gap: 3rem;
+  margin: 0;
+  padding: 0;
+  align-items: center;
+}
+
+.nav-item {
+  position: relative;
+  opacity: 0;
+  transform: translateY(-20px);
+  animation: slideDownMenu 0.6s ease-out forwards;
+}
+
+.nav-item:nth-child(1) { animation-delay: 0.4s; }
+.nav-item:nth-child(2) { animation-delay: 0.5s; }
+.nav-item:nth-child(3) { animation-delay: 0.6s; }
+
+@keyframes slideDownMenu {
+  0% {
+    opacity: 0;
+    transform: translateY(-20px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes fadeIn {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+/* Default Nav Link */
+.nav-link {
+  background: none;
+  border: none;
+  text-decoration: none;
+  color: #333; /* Default dark color */
+  font-weight: 600;
+  transition: all 0.3s ease;
+  font-size: 0.9rem;
+  text-transform: uppercase;
+  letter-spacing: 1.5px;
+  padding: 0.5rem 0;
+  cursor: pointer;
+  position: relative;
+  font-family: inherit;
+  display: inline-block;
+}
+
+.nav-link:hover {
+  color: #F5BABB;
+}
+
+.nav-link::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 0;
+  height: 2px;
+  background: #F5BABB;
+  transition: width 0.3s ease;
+}
+
+.nav-link:hover::after {
+  width: 100%;
+}
+
+/* White Nav Link (untuk Home page saat di atas News section DAN News page) */
+.nav-link-white {
+  color: white !important;
+  font-weight: 600;
+}
+
+.nav-link-white:hover {
+  color: #ffffff !important;
+  opacity: 0.8;
+}
+
+.nav-link-white::after {
+  background: #ffffff;
+}
+
+.nav-link-white:hover::after {
+  background: #ffffff;
+}
+
+/* Dark Nav Link (untuk Home page saat di section gelap) */
+.nav-link-dark {
+  color: #333 !important;
+  font-weight: 600;
+}
+
+.nav-link-dark:hover {
+  color: #ffffff !important;
+}
+
+.nav-link-dark::after {
+  background: #ffffff;
+}
+
+/* Active State */
+.nav-link.active {
+  color: #F5BABB;
+}
+
+.nav-link.active::after {
+  width: 100%;
+}
+
+/* ==================== */
+/* HAMBURGER MENU STYLES DENGAN ANIMASI SMOOTH */
+/* ==================== */
+
+/* Burger Menu Button */
+.burger-menu {
+  display: none;
+  flex-direction: column;
+  cursor: pointer;
+  padding: 8px;
+  z-index: 1001;
+  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  background: transparent;
+  border: none;
+  position: relative;
+}
+
+.burger-icon {
+  width: 54px;
+  height: 54px;
+  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  transform-origin: center;
+  position: relative;
+  z-index: 2;
+}
+
+/* Animasi Rotasi dan Scale untuk Burger Icon */
+.burger-menu.active .burger-icon {
+  transform: rotate(90deg) scale(1.1);
+}
+
+.burger-overlay {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 40px;
+  height: 40px;
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 50%;
+  opacity: 0;
+  transition: all 0.3s ease;
+}
+
+.burger-menu.active .burger-overlay {
+  opacity: 1;
+  transform: translate(-50%, -50%) scale(1);
+}
+
+.burger-menu:hover .burger-overlay {
+  opacity: 0.5;
+  transform: translate(-50%, -50%) scale(1.1);
+}
+
+/* Mobile Menu Dropdown dengan Animasi */
+.mobile-menu {
+  display: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100vh;
+  z-index: 999;
+  opacity: 0;
+  visibility: hidden;
+  transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.mobile-menu.active {
+  opacity: 1;
+  visibility: visible;
+}
+
+/* Backdrop dengan animasi fade */
+.mobile-menu-backdrop {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0);
+  transition: background 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+  cursor: pointer;
+}
+
+.mobile-menu.active .mobile-menu-backdrop {
+  background: rgba(0, 0, 0, 0.95);
+}
+
+/* Backdrop blur effect */
+@supports (backdrop-filter: blur(10px)) {
+  .mobile-menu.active .mobile-menu-backdrop {
+    background: rgba(0, 0, 0, 0.85);
+    backdrop-filter: blur(15px);
+  }
+}
+
+.mobile-menu-content {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -40%);
+  display: flex;
+  flex-direction: column;
+  gap: 2.5rem;
+  text-align: center;
+  width: 100%;
+  padding: 0 2rem;
+  opacity: 0;
+  transition: all 0.6s cubic-bezier(0.4, 0, 0.2, 1) 0.1s;
+}
+
+.mobile-menu.active .mobile-menu-content {
+  opacity: 1;
+  transform: translate(-50%, -50%);
+}
+
+.mobile-nav-link {
+  color: white;
+  font-size: 1.5rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  text-decoration: none;
+  padding: 1rem 0;
+  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  position: relative;
+  opacity: 0;
+  transform: translateY(30px);
+  cursor: pointer;
+}
+
+.mobile-menu.active .mobile-nav-link {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Staggered animation untuk menu items */
+.mobile-menu.active .mobile-nav-link:nth-child(1) {
+  transition: all 0.6s cubic-bezier(0.4, 0, 0.2, 1) 0.2s;
+}
+
+.mobile-menu.active .mobile-nav-link:nth-child(2) {
+  transition: all 0.6s cubic-bezier(0.4, 0, 0.2, 1) 0.3s;
+}
+
+.mobile-menu.active .mobile-nav-link:nth-child(3) {
+  transition: all 0.6s cubic-bezier(0.4, 0, 0.2, 1) 0.4s;
+}
+
+.mobile-nav-link:hover {
+  color: #F5BABB;
+  transform: scale(1.05) translateY(-2px);
+}
+
+.mobile-nav-link::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 25%;
+  width: 50%;
+  height: 2px;
+  background: #F5BABB;
+  transform: scaleX(0);
+  transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.mobile-nav-link:hover::after {
+  transform: scaleX(1);
+}
+
+/* Pulse animation untuk menu items */
+@keyframes pulseGlow {
+  0% {
+    text-shadow: 0 0 5px rgba(245, 186, 187, 0.5);
+  }
+  50% {
+    text-shadow: 0 0 20px rgba(245, 186, 187, 0.8);
+  }
+  100% {
+    text-shadow: 0 0 5px rgba(245, 186, 187, 0.5);
+  }
+}
+
+.mobile-nav-link:hover {
+  animation: pulseGlow 2s infinite;
+}
+
+/* ==================== */
+/* RESPONSIVE DESIGN */
+/* ==================== */
+
+/* Tablet & Mobile - Hide Desktop Menu, Show Burger */
+@media (max-width: 1024px) {
+  .nav-menu {
+    display: none;
+  }
+  
+  .burger-menu {
+    display: flex;
+  }
+  
+  .mobile-menu {
+    display: block;
+  }
+}
+
+/* Desktop Only - Show Desktop Menu, Hide Burger */
+@media (min-width: 1025px) {
+  .nav-menu {
+    display: flex;
+  }
+  
+  .burger-menu {
+    display: none;
+  }
+  
+  .mobile-menu {
+    display: none;
+  }
+}
+
+/* Tablet Responsive */
+@media (max-width: 1024px) and (min-width: 769px) {
+  .nav-container {
+    padding: 0 1.5rem;
+  }
+  
+  .nav-logo {
+    font-size: 1.6rem;
+  }
+  
+  .mobile-nav-link {
+    font-size: 1.8rem;
+  }
+}
+
+/* Mobile Responsive */
+@media (max-width: 768px) {
+  .nav-container {
+    padding: 0 1rem;
+  }
+  
+  .nav-logo {
+    font-size: 1.4rem;
+  }
+  
+  .mobile-nav-link {
+    font-size: 1.5rem;
+  }
+  
+  .mobile-menu-content {
+    gap: 2rem;
+  }
+}
+
+/* Small Mobile */
+@media (max-width: 480px) {
+  .navbar {
+    padding: 1rem 0;
+  }
+  
+  .nav-container {
+    padding: 0 0.8rem;
+  }
+  
+  .nav-logo {
+    font-size: 1.2rem;
+  }
+  
+  .burger-icon {
+    width: 50px;
+    height: 50px;
+  }
+  
+  .mobile-nav-link {
+    font-size: 1.3rem;
+    letter-spacing: 1px;
+  }
+  
+  .mobile-menu-content {
+    gap: 1.5rem;
+    padding: 0 1rem;
+  }
+}
+
+/* Smooth transitions untuk semua elemen */
+.navbar * {
+  transition: color 0.3s ease, background-color 0.3s ease, opacity 0.3s ease;
+}
