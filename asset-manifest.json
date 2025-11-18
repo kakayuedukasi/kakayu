@@ -1,18 +1,18 @@
 {
   "files": {
     "main.css": "/kakayu/static/css/main.76114d8d.css",
-    "main.js": "/kakayu/static/js/main.7b091aa2.js",
+    "main.js": "/kakayu/static/js/main.c4902550.js",
     "static/js/453.1b23023c.chunk.js": "/kakayu/static/js/453.1b23023c.chunk.js",
     "static/media/kepsek.png": "/kakayu/static/media/kepsek.b8f924c2e587688da25e.png",
     "static/media/home-bg.png": "/kakayu/static/media/home-bg.bda5d75f5487ce7c8798.png",
     "static/media/Menu Circle.png": "/kakayu/static/media/Menu Circle.2ab3b14d94c38bab1a58.png",
     "index.html": "/kakayu/index.html",
     "main.76114d8d.css.map": "/kakayu/static/css/main.76114d8d.css.map",
-    "main.7b091aa2.js.map": "/kakayu/static/js/main.7b091aa2.js.map",
+    "main.c4902550.js.map": "/kakayu/static/js/main.c4902550.js.map",
     "453.1b23023c.chunk.js.map": "/kakayu/static/js/453.1b23023c.chunk.js.map"
   },
   "entrypoints": [
     "static/css/main.76114d8d.css",
-    "static/js/main.7b091aa2.js"
+    "static/js/main.c4902550.js"
   ]
 }
