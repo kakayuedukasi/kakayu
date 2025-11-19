@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
 import './Navbar.css';
-import burger from '../components/burger.png';
+import circle from '../components/Menu Circle.png';
 
 const Navbar = () => {
   const location = useLocation();
@@ -105,6 +105,23 @@ const Navbar = () => {
     }
   };
 
+  const handleIsbnClick = (e) => {
+    e.preventDefault();
+    console.log('🖱️ ISBN clicked');
+    closeMenu();
+    
+    if (location.pathname === '/') {
+      const element = document.getElementById('isbn');
+      if (element) {
+        element.scrollIntoView({ behavior: 'smooth' });
+        setTimeout(() => setNavColor('dark'), 400);
+      }
+    } else {
+      sessionStorage.setItem('scrollToIsbn', 'true');
+      navigate('/');
+    }
+  };
+
   const handleExperienceClick = () => {
     closeMenu();
   };
@@ -145,11 +162,10 @@ const Navbar = () => {
           onClick={toggleMenu}
         >
           <img 
-            src={burger} 
+            src={circle} 
             alt="Menu" 
             className={`burger-icon ${isMenuOpen ? 'active' : ''}`}
           />
-          <div className="burger-overlay"></div>
         </div>
         
         <ul className="nav-menu">
@@ -169,6 +185,16 @@ const Navbar = () => {
             >
               EXPERIENCE
             </Link>
+          </li>
+          <li className="nav-item">
+            <a 
+              href="#isbn"
+              className={`nav-link ${getNavLinkClass()}`}
+              onClick={handleIsbnClick}
+              style={{ textDecoration: 'none' }}
+            >
+              ISBN
+            </a>
           </li>
           <li className="nav-item">
             <a 
@@ -205,6 +231,17 @@ const Navbar = () => {
             >
               EXPERIENCE
             </Link>
+            <a 
+              href="#isbn"
+              className="mobile-nav-link"
+              onClick={(e) => {
+                handleIsbnClick(e);
+                closeMenu();
+              }}
+              style={{ textDecoration: 'none' }}
+            >
+              ISBN
+            </a>
             <a 
               href="#about"
               className="mobile-nav-link"

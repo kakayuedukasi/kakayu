@@ -9,6 +9,159 @@
   scroll-behavior: smooth;
 }
 
+/* ==================== */
+/* SYSTEM CONTROL POSISI SCROLLING NAMES - MUDAH DIUBAH */
+/* ==================== */
+
+/* DEFAULT POSITION - Desktop */
+.scrolling-names {
+  display: flex;
+  position: absolute;
+  top: 50%; /* DEFAULT POSITION */
+  left: 0;
+  transform: translateY(-50%);
+  white-space: nowrap;
+  animation: scrollNames 25s linear infinite;
+  will-change: transform;
+}
+
+.scrolling-name {
+  font-size: 8rem;
+  font-weight: 900;
+  color: rgba(0, 0, 0, 0.1);
+  margin-right: 4rem;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  opacity: 0;
+  animation: fadeInNames 1.5s ease 1.2s forwards;
+}
+
+@keyframes fadeInNames {
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes scrollNames {
+  0% {
+    transform: translateY(-50%) translateX(0);
+  }
+  100% {
+    transform: translateY(-50%) translateX(-50%);
+  }
+}
+
+/* ==================== */
+/* TABLET CONTROL (769px - 1024px) */
+/* ==================== */
+@media (max-width: 1024px) and (min-width: 769px) {
+  .scrolling-names {
+    /* 🔧 UBAH NILAI INI UNTUK ATUR POSISI TABLET */
+    top: 50%; /* Contoh: 50% = tengah, 40% = lebih atas, 60% = lebih bawah */
+  }
+  
+  .scrolling-name {
+    font-size: 30rem;
+    color: #F5BABB;
+    margin-right: 3rem;
+  }
+  
+  /* Pastikan animasi berjalan */
+  .scrolling-names {
+    animation: scrollNames 20s linear infinite !important;
+  }
+}
+
+/* ==================== */
+/* MOBILE LARGE CONTROL (481px - 768px) */
+/* ==================== */
+@media (max-width: 768px) and (min-width: 481px) {
+  .scrolling-names {
+    /* 🔧 UBAH NILAI INI UNTUK ATUR POSISI MOBILE LARGE */
+    top: 45%; /* Contoh: 45% = sedikit ke atas dari tengah */
+  }
+  
+  .scrolling-name {
+    font-family: fantasy;
+    font-size: 25rem;
+    color: #F5BABB;
+    margin-right: 2rem;
+  }
+  
+  .scrolling-names {
+    animation: scrollNames 15s linear infinite !important;
+  }
+}
+
+/* ==================== */
+/* MOBILE MEDIUM CONTROL (401px - 480px) */
+/* ==================== */
+@media (max-width: 480px) and (min-width: 401px) {
+  .scrolling-names {
+    /* 🔧 UBAH NILAI INI UNTUK ATUR POSISI MOBILE MEDIUM */
+    top: 43%; /* Contoh: 43% = lebih ke atas */
+  }
+  
+  .scrolling-name {
+    font-family: fantasy;
+    font-size: 20rem;
+    color: #F5BABB;
+    margin-right: 1.5rem;
+  }
+  
+  .scrolling-names {
+    animation: scrollNames 12s linear infinite !important;
+  }
+}
+
+/* ==================== */
+/* MOBILE SMALL CONTROL (400px kebawah) */
+/* ==================== */
+@media (max-width: 400px) {
+  .scrolling-names {
+    /* 🔧 UBAH NILAI INI UNTUK ATUR POSISI MOBILE KECIL */
+    top: 50%; /* Contoh: 40% = paling atas */
+  }
+  
+  .scrolling-name {
+    font-family: fantasy;
+    font-size: 18rem;
+    color: #F5BABB;
+    margin-right: 1rem;
+    opacity: 0.7;
+  }
+  
+  .scrolling-names {
+    animation: scrollNames 10s linear infinite !important;
+  }
+}
+
+/* ==================== */
+/* IPHONE SPECIFIC FIXES */
+/* ==================== */
+@media (max-width: 390px) {
+  .scrolling-names {
+    /* 🔧 POSISI KHUSUS UNTUK IPHONE 12/13/14 */
+    top: 50%;
+  }
+  
+  .scrolling-name {
+    font-size: 16rem;
+  }
+}
+
+/* Landscape Mobile */
+@media (max-width: 844px) and (max-height: 390px) and (orientation: landscape) {
+  .scrolling-names {
+    /* 🔧 POSISI UNTUK LANDSCAPE MOBILE */
+    top: 50%; /* Kembali ke tengah di landscape */
+  }
+  
+  .scrolling-name {
+    font-size: 12rem; /* Lebih kecil di landscape */
+  }
+}
+
 /* Animasi Keyframes untuk About Section */
 @keyframes fadeInUp {
   from {
@@ -54,7 +207,7 @@
   }
 }
 
-/* SPINNER LOADING ANIMATION - SAMA SEPERTI NEWS */
+/* SPINNER LOADING ANIMATION */
 @keyframes spin {
   0% {
     transform: rotate(0deg);
@@ -64,7 +217,6 @@
   }
 }
 
-/* Loading Container - DI TENGAH SEPERTI NEWS */
 .loading-container {
   display: flex;
   flex-direction: column;
@@ -93,7 +245,10 @@
   opacity: 0.9;
 }
 
-/* Hero Section */
+/* ==================== */
+/* HERO SECTION DENGAN BACKGROUND TERANG */
+/* ==================== */
+
 .hero-section {
   height: 100vh;
   position: relative;
@@ -111,6 +266,81 @@
   border-radius: 0 0 40px 40px;
   overflow: hidden;
   position: relative;
+  opacity: 0;
+  transform: scale(1.1);
+  transition: all 1.5s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+
+/* Animasi saat background loaded */
+.home-container.bg-loaded {
+  opacity: 1;
+  transform: scale(1);
+}
+
+/* Efek overlay gradient yang LEBIH TERANG */
+.home-container::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: linear-gradient(
+    135deg,
+    rgba(255, 255, 255, 0.3) 0%,
+    rgba(255, 255, 255, 0.1) 50%,
+    rgba(255, 255, 255, 0.2) 100%
+  );
+  opacity: 0;
+  transition: opacity 1.2s ease 0.5s;
+}
+
+.home-container.bg-loaded::before {
+  opacity: 1;
+}
+
+/* Animasi subtle zoom in continuous */
+@keyframes subtleZoom {
+  0% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.02);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+
+.home-container.bg-loaded {
+  animation: subtleZoom 20s ease-in-out infinite;
+}
+
+/* Floating particles effect yang lebih terang */
+.home-container::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: 
+    radial-gradient(circle at 20% 80%, rgba(255, 255, 255, 0.3) 2%, transparent 5%),
+    radial-gradient(circle at 80% 20%, rgba(255, 255, 255, 0.3) 2%, transparent 5%),
+    radial-gradient(circle at 40% 40%, rgba(255, 255, 255, 0.2) 3%, transparent 8%);
+  opacity: 0;
+  animation: fadeInParticles 2s ease 1s forwards;
+}
+
+@keyframes fadeInParticles {
+  to {
+    opacity: 1;
+  }
+}
+
+/* Loading state untuk background */
+.home-container:not(.bg-loaded) {
+  background: linear-gradient(135deg, #f5f7fa 0%, #e4eaf5 100%);
 }
 
 /* Mobile Hero Section */
@@ -122,8 +352,10 @@
   align-items: center;
   justify-content: flex-end;
   flex-direction: column;
+  z-index: 2;
 }
 
+/* Animasi untuk kepsek image di mobile */
 .kepsek-image {
   width: 65%;
   height: auto;
@@ -131,6 +363,14 @@
   object-position: center;
   position: relative;
   z-index: 2;
+  opacity: 0;
+  transform: translateY(30px);
+  transition: all 1s ease 0.8s;
+}
+
+.home-container.bg-loaded .kepsek-image {
+  opacity: 1;
+  transform: translateY(0);
 }
 
 .name-background {
@@ -144,36 +384,10 @@
   background-color: white;
 }
 
-.scrolling-names {
-  display: flex;
-  position: absolute;
-  top: 50%;
-  left: 0;
-  transform: translateY(-50%);
-  white-space: nowrap;
-  animation: scrollNames 20s linear infinite;
-}
+/* ==================== */
+/* PRESTASI SECTION - AUTO SCROLL FIXED */
+/* ==================== */
 
-.scrolling-name {
-  font-size: 8rem;
-  font-weight: 900;
-  color: rgba(0, 0, 0, 0.1);
-  margin-right: 4rem;
-  text-transform: uppercase;
-  letter-spacing: 2px;
-}
-
-/* Animation untuk nama berjalan */
-@keyframes scrollNames {
-  0% {
-    transform: translateY(-50%) translateX(0);
-  }
-  100% {
-    transform: translateY(-50%) translateX(-50%);
-  }
-}
-
-/* Prestasi Section */
 .prestasi-section {
   min-height: 80vh;
   background-color: #568F87;
@@ -229,16 +443,6 @@
   bottom: 0;
   z-index: 2;
   pointer-events: none;
-}
-
-.section-content::before {
-  left: 0;
-  background: linear-gradient(90deg, #568F87 0%, rgba(86, 143, 135, 0) 100%);
-}
-
-.section-content::after {
-  right: 0;
-  background: linear-gradient(270deg, #568F87 0%, rgba(86, 143, 135, 0) 100%);
 }
 
 /* Gallery yang bergeser - INFINITE LOOP - UNTUK SEMUA DEVICE */
@@ -322,7 +526,7 @@
 }
 
 /* ==================== */
-/* ABOUT SECTION ANIMATIONS - PASTI BEKERJA */
+/* ABOUT SECTION ANIMATIONS - DIPERBAIKI */
 /* ==================== */
 
 /* About Section Base */
@@ -400,11 +604,6 @@
 
 /* TABLET STYLES */
 @media (max-width: 1024px) and (min-width: 769px) {
-  .scrolling-name {
-    font-size: 30rem;
-    color: #F5BABB;
-  }
-  
   /* Tablet view juga pakai background putih */
   .home-container {
     background-color: white !important;
@@ -507,20 +706,6 @@
     max-width: 600px;
     max-height: 600px;
     margin-bottom: -1px;
-  }
-  
-  /* Adjust ukuran teks berjalan untuk mobile */
-  .scrolling-name {
-    font-family: fantasy;
-    font-size: 20rem;
-    margin-right: 1.5rem;
-    color: #F5BABB;
-  }
-  
-  /* Pastikan tidak ada margin/padding yang mengganggu */
-  .main-container {
-    margin: 0;
-    padding: 0;
   }
   
   /* Prestasi section adjustments untuk mobile */
@@ -662,20 +847,6 @@
     display: block !important;
   }
   
-  /* SCROLLING NAMES LEBIH KECIL */
-  .scrolling-name {
-    font-size: 30rem !important;
-    color: #F5BABB !important;
-    margin-right: 0.8rem !important;
-    opacity: 0.7 !important;
-  }
-  
-  /* PASTIKAN TIDAK ADA PADDING/MARGIN YANG MEMBUAT CELAH */
-  .main-container {
-    margin: 0 !important;
-    padding: 0 !important;
-  }
-  
   /* PRESTASI SECTION SESUAIKAN */
   .prestasi-section {
     padding: 2rem 0 !important;
@@ -773,10 +944,6 @@
     }
   }
   
-  .scrolling-name {
-    font-size: 15rem;
-  }
-  
   .section-title {
     font-size: 2rem;
   }
@@ -816,5 +983,213 @@
 @media (max-width: 390px) {
   .prestasi-gallery-container {
     min-height: 230px !important;
+  }
+}
+
+/* ==================== */
+/* FIX: SEMUA ANIMASI BEKERJA */
+/* ==================== */
+
+/* Pastikan auto scroll selalu aktif secara default */
+.prestasi-gallery-container.auto-scroll .prestasi-scrolling-gallery {
+  animation-play-state: running !important;
+}
+
+.prestasi-gallery-container.manual-scroll .prestasi-scrolling-gallery {
+  animation-play-state: paused;
+}
+
+/* Untuk device dengan performa rendah - HANYA non-essential animations yang dimatikan */
+@media (prefers-reduced-motion: reduce) {
+  .home-container {
+    animation: none;
+    transition: opacity 0.8s ease;
+  }
+  
+  .home-container::after {
+    display: none;
+  }
+  
+  /* JANGAN matikan scrolling names di reduced motion */
+  /* Biarkan animasi essential tetap bekerja */
+}
+
+/* Performance optimization */
+.home-container {
+  will-change: transform, opacity;
+}
+
+.prestasi-scrolling-gallery {
+  will-change: transform;
+}
+
+.about-content,
+.about-title,
+.about-text {
+  will-change: transform, opacity;
+}
+
+/* Print styles */
+@media print {
+  .home-container::before,
+  .home-container::after {
+    display: none;
+  }
+  
+  .prestasi-scrolling-gallery {
+    animation: none;
+  }
+  
+  .scrolling-names {
+    animation: none !important;
+  }
+  
+  .about-content,
+  .about-title,
+  .about-text {
+    opacity: 1 !important;
+    transform: none !important;
+    transition: none !important;
+  }
+}
+
+/* ==================== */
+/* CARA PENGGUNAAN SISTEM POSISI:
+ * 
+ * UNTUK MENGUBAH POSISI SCROLLING NAMES, UBAH NILAI "top" PADA:
+ * 
+ * 1. TABLET (769px - 1024px): 
+ *    @media (max-width: 1024px) and (min-width: 769px)
+ *    .scrolling-names { top: 50%; }
+ * 
+ * 2. MOBILE LARGE (481px - 768px):
+ *    @media (max-width: 768px) and (min-width: 481px)  
+ *    .scrolling-names { top: 45%; }
+ * 
+ * 3. MOBILE MEDIUM (401px - 480px):
+ *    @media (max-width: 480px) and (min-width: 401px)
+ *    .scrolling-names { top: 43%; }
+ * 
+ * 4. MOBILE SMALL (400px kebawah):
+ *    @media (max-width: 400px)
+ *    .scrolling-names { top: 40%; }
+ * 
+ * NILAI TOP:
+ * - 50% = TENGAH TEPAT
+ * - 45% = SEDIKIT KE ATAS  
+ * - 40% = LEBIH KE ATAS
+ * - 55% = SEDIKIT KE BAWAH
+ * - 60% = LEBIH KE BAWAH
+ * 
+ * Semakin kecil angka = semakin ke ATAS
+ * Semakin besar angka = semakin ke BAWAH
+ * ==================== */
+
+ /* ==================== */
+/* SOCIAL MEDIA STYLES */
+/* ==================== */
+
+.social-media {
+  margin-top: 3rem;
+  text-align: center;
+  opacity: 0;
+  transform: translateY(30px);
+  transition: all 0.8s ease-out 0.7s;
+}
+
+.social-media.animate-social {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.social-title {
+  font-size: 1.1rem;
+  color: #000;
+  margin-bottom: 1.5rem;
+  font-weight: 600;
+  letter-spacing: 1px;
+}
+
+.social-icons {
+  display: flex;
+  justify-content: center;
+  gap: 1.5rem;
+  flex-wrap: wrap;
+}
+
+.social-icon-btn {
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 0.75rem;
+  border-radius: 50%;
+  transition: all 0.3s ease;
+  background: #f8f9fa;
+  border: 2px solid transparent;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-decoration: none;
+}
+
+.social-icon-btn:hover {
+  transform: translateY(-3px);
+  border-color: #000;
+  background: white;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+}
+
+.social-icon {
+  width: 30px;
+  height: 30px;
+  object-fit: contain;
+  transition: transform 0.3s ease;
+}
+
+.social-icon-btn:hover .social-icon {
+  transform: scale(1.1);
+}
+
+/* Responsive Social Media */
+@media (max-width: 768px) {
+  .social-media {
+    margin-top: 2.5rem;
+  }
+  
+  .social-title {
+    font-size: 1rem;
+    margin-bottom: 1.25rem;
+  }
+  
+  .social-icons {
+    gap: 1.25rem;
+  }
+  
+  .social-icon-btn {
+    padding: 0.6rem;
+  }
+  
+  .social-icon {
+    width: 28px;
+    height: 28px;
+  }
+}
+
+@media (max-width: 480px) {
+  .social-media {
+    margin-top: 2rem;
+  }
+  
+  .social-icons {
+    gap: 1rem;
+  }
+  
+  .social-icon-btn {
+    padding: 0.5rem;
+  }
+  
+  .social-icon {
+    width: 25px;
+    height: 25px;
   }
 }
